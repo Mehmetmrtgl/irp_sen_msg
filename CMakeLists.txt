@@ -1,17 +1,30 @@
-cmake_minimum_required(VERSION 2.8.3)
-
+cmake_minimum_required(VERSION 3.8)
 project(irp_sen_msgs)
-if (NOT CMAKE_BUILD_TYPE)
-  set (CMAKE_BUILD_TYPE RelWithDebInfo)
-endif ()
-find_package(catkin REQUIRED COMPONENTS message_generation std_msgs geometry_msgs sensor_msgs
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# Find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+
+# Generate messages
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/Altimeter.msg"
+  "msg/Encoder.msg"
+  "msg/Fog.msg"
+  "msg/Fog3Axis.msg"  # Dikkat: Alt tireyi kaldırdık (PascalCase kuralı gereği daha güvenli)
+  "msg/Imu.msg"
+  "msg/LaserScanArray.msg"
+  "msg/Vrs.msg"
+  DEPENDENCIES std_msgs geometry_msgs sensor_msgs
 )
 
-add_message_files(
-  DIRECTORY msg
-)
-generate_messages(DEPENDENCIES std_msgs geometry_msgs sensor_msgs)
+# Export dependencies for packages that depend on this one
+ament_export_dependencies(rosidl_default_runtime)
 
-catkin_package(
-  CATKIN_DEPENDS message_runtime std_msgs geometry_msgs sensor_msgs
-)
+ament_package()

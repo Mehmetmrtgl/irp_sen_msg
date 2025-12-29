@@ -1,6 +1,5 @@
-Header header  # standard ROS message header
+std_msgs/Header header
 
 int64 size
-sensor_msgs/LaserScan[] LaserScans
-
+sensor_msgs/LaserScan[] laser_scans
 

@@ -1,17 +1,17 @@
-Header header  # standard ROS message header
+std_msgs/Header header
 
-string GPGGA
-string GNGLL
-string GNGNS
-string GNGST
-string GPGSV
-string GLGSV
-string GNHDT
-string GNRMC
-string GNVTG
-string GNZDA
-string GNROT
-string GNGMP
+string gpgga
+string gngll
+string gngns
+string gngst
+string gpgsv
+string glgsv
+string gnhdt
+string gnrmc
+string gnvtg
+string gnzda
+string gnrot
+string gngmp
 
 float64 longitude
 float64 latitude
@@ -37,5 +37,4 @@ float64 heading_true
 float64 heading_magnet
 float64 speed_knot
 float64 speed_km
-string GNVTG_mode
-
+string gnvtg_mode
